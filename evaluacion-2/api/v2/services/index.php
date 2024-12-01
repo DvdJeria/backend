@@ -36,9 +36,9 @@ switch ($_method) {
             // Validar los datos requeridos
             if (isset($body->titulo, $body->descripcion, $body->activo)) {
                 // Asignar los datos al modelo
-                $modelo->setTitulo($body->titulo); // Espera un objeto para `titulo`
-                $modelo->setDescripcion($body->descripcion); // Espera un objeto para `descripcion`
-                $modelo->setActivo($body->activo); // `activo` debe ser true/false
+                $services->setTitulo($body->titulo); // Espera un objeto para `titulo`
+                $services->setDescripcion($body->descripcion); // Espera un objeto para `descripcion`
+                $services->setActivo($body->activo); // `activo` debe ser true/false
 
                 // Insertar el nuevo registro
                 $respuesta = $services->addServices($services);
@@ -52,7 +52,7 @@ switch ($_method) {
                 }
             } else {
                 http_response_code(400); // Bad Request
-                echo json_encode(['error' => 'Datos incompletos.']);
+                echo json_encode(['error' => 'Datos incompletos']);
             }
         } else {
             http_response_code(403); // Forbidden

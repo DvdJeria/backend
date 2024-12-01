@@ -30,7 +30,7 @@ switch ($_method) {
             include_once 'modeloBasicInfo.php';
 
             // Instanciar el modelo Services
-            $modelo = new BasicInfo();
+            $basic = new BasicInfo();
 
             // Obtener y decodificar los datos del cuerpo de la solicitud
             $body = json_decode(file_get_contents("php://input", true));
@@ -38,12 +38,12 @@ switch ($_method) {
             // Validar los datos requeridos
             if (isset($body->tipo, $body->items, $body->activo)) {
                 // Asignar los datos al modelo
-                $modelo->setTipo($body->tipo); // Espera un objeto para `titulo`
-                $modelo->setItems($body->items); // Espera un objeto para `descripcion`
-                $modelo->setActivo($body->activo); // `activo` debe ser true/false
+                $basic->setTipo($body->tipo);
+                $basic->setItems($body->items);
+                $basic->setActivo($body->activo);
 
                 // Insertar el nuevo registro
-                $respuesta = $modelo->addBasicInfo($modelo);
+                $respuesta = $basic->addBasicInfo($basic);
 
                 if ($respuesta) {
                     http_response_code(201); // Created
